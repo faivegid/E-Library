@@ -12,5 +12,4 @@ The API provides an interface for login and creating an accouunt, with an admin 
 but restricting the admin from editing books ratings.
 
 ERD Diagram
- ![ERD Diagram](![GBLAC](https://user-images.githubusercontent.com/49518762/133750855-493e8e7b-b80d-4f2e-91dd-280f278b2e36.png)
-)
+ ![GBLAC](https://user-images.githubusercontent.com/49518762/133750855-493e8e7b-b80d-4f2e-91dd-280f278b2e36.png)
