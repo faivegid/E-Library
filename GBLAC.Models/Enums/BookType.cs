@@ -1,6 +1,6 @@
-﻿namespace GBLAC.API.Models.Enum
+﻿namespace GBLAC.Models.Enums
 {
-    public enum Type
+    public enum BookType
     {
         Books,
         AudioBooks,

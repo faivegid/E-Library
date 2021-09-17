@@ -1,7 +1,8 @@
-﻿using System;
+﻿using GBLAC.Models.Enums;
+using System;
 using System.Collections.Generic;
 
-namespace GBLAC.API.Models
+namespace GBLAC.Models
 {
     public class Book
     {
@@ -11,12 +12,12 @@ namespace GBLAC.API.Models
         public string Image { get; set; }
         public string Description { get; set; }
         public string ISBN { get; set; }
-        public ICollection<Type> Type { get; set; }
         public string Author { get; set; }
         public string Publisher { get; set; }
         public DateTime DateReleased { get; set; }
         public DateTime DateAdded { get; set; }
+        public List<BookType> BookTypes { get; set; }
         public List<int> Ratings { get; set; }
-        public ICollection<Category> Category { get; set; }
+        public List<Category> Category { get; set; }
     }
 }

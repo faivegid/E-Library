@@ -13,7 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GBLAC.API\GBLAC.API.csproj" />
+    <ProjectReference Include="..\GBLAC.Data\GBLAC.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\APIControllers\" />
+    <Folder Include="Controllers\MVCRepository\" />
   </ItemGroup>
 
 </Project>

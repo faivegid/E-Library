@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GBLAC.API.Models
+namespace GBLAC.Models
 {
     public class Category
     {
