@@ -14,6 +14,7 @@ namespace GBLAC.Data
     {
         public DbSet<Book> Books { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Rates> Ratings { get; set; }
         public GBlacContext(DbContextOptions<GBlacContext> options) : base(options)
         {
         }

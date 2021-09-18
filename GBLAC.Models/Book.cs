@@ -6,18 +6,18 @@ namespace GBLAC.Models
 {
     public class Book
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public Guid Id { get; set; }
+        public string BookName { get; set; }
         public string Url { get; set; }
-        public string Image { get; set; }
+        public string Thumbnail { get; set; }
         public string Description { get; set; }
         public string ISBN { get; set; }
-        public string Author { get; set; }
-        public string Publisher { get; set; }
+        public string AuthorName { get; set; }
+        public string PublisherName { get; set; }
         public DateTime DateReleased { get; set; }
         public DateTime DateAdded { get; set; }
         public List<BookType> BookTypes { get; set; }
-        public List<int> Ratings { get; set; }
+        public List<Rates> Ratings { get; set; }
         public List<Category> Category { get; set; }
     }
 }
