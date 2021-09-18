@@ -1,4 +1,6 @@
 using GBLAC.Data;
+using GBLAC.Repository.APIRepository.Implementations;
+using GBLAC.Repository.APIRepository.interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,8 +27,13 @@ namespace GBLAC.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //NOTE: When the  AccountRepository inherits from the IAccountRepository, the error will disappear. I couldnt implement it. do it.
+            //services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddDbContext<GBlacContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultSettings")));
             services.AddControllersWithViews();
+
+            // Configure JWT settings
+            services.ConfigureJWT(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
