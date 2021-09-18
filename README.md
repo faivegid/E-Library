@@ -4,7 +4,7 @@ Team Members -
 * Gideon Faive - Team Lead
 * Praise Balogun
 * Chibuke Lawrence
-* Chukwuebuka Neylu
+* Chukwuebuka Enyelu
 
 This is an ASP.NET application with both API and a MVC that consumes the API.
 The MVC show an a web application for people to visit and read books and rate them or download them or listen or read online.
