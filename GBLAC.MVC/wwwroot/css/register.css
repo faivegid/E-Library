@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+:root {
+    --primary-color: #ffe600;
+    --secondary-color: #263b5e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3rem 1fr 3rem;
+    grid-template-areas: "header" "main" "footer";
+    height: 100vh;
+}
+
+/* Header section Starts here ------------------------------------------- */
+
+.header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.header-brand {
+    padding: 1.5rem;
+    font-family: 'Quicksand', sans-serif;
+}
+
+    .header-brand h1 a {
+        text-decoration: none;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: var(--secondary-color);
+    }
+
+/* Header Links */
+.nav-list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 2rem;
+}
+
+    .nav-list li {
+        padding: 1.5rem;
+    }
+
+        .nav-list li a {
+            text-decoration: none;
+            color: var(--secondary-color);
+        }
+
+.sign {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+}
+
+#sign-in {
+    transition: 0.5s ease-in;
+}
+
+#sign-up {
+    transition: 0.5s ease-in;
+}
+
+/* .form-container{
+    display: flex;
+    gap: 1px;
+} */
+
+.hide {
+    display: none;
+}
+
+
+/* Header section stops here -------------------------------------------- */
+
+
+
+/* Main section starts here ............................................. */
+
+.main {
+    grid-area: main;
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.pexels.com/photos/3457273/pexels-photo-3457273.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.modal {
+    position: relative;
+    width: 380px;
+    height: 480px;
+    margin: 1.5% auto;
+    background: rgba(255, 255, 255, .8);
+    padding: 5px;
+}
+
+.button-box {
+    position: relative;
+    width: 220px;
+    margin: 35px auto;
+    box-shadow: 0 0 20px 9px #ff61241f;
+    border-radius: 30px;
+}
+
+.toggle-btn {
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+
+.toggle-btn1 {
+    color: white;
+}
+
+#btn {
+    top: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    left: 0;
+    border-radius: 30px;
+    transition: .5s;
+    background: var(--secondary-color);
+    color: #fff;
+}
+
+.social-icon {
+    margin: 30px auto;
+    text-align: center;
+}
+
+    .social-icon img {
+        margin: 0 12px;
+        box-shadow: 0 0 20px 0 #7f7f7f3d;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-field {
+    width: 377px;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+
+.buttons button {
+    padding: 10px 30px;
+    width: 100%;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: var(--secondary-color);
+    color: #fff;
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+}
