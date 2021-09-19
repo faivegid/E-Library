@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../wwwroot/css/egister.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="header">
+            <div class="header-brand"><h1><a href="#">G-BLAC</a></h1></div>
+            <div class="header-nav">
+                <ul class="nav-list">
+                    <li class="nav"><a href="#">HOME</a></li>
+                    <li class="nav"><a href="#">EXPLORE</a></li>
+                    <li class="nav"><a href="#">CONTACT US</a></li>
+                    <li class="nav"><span class="sign"><a href="#">SIGN IN</a></span></li>
+                    <li class="search"><i class="fas fa-search"></i></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <div class="modal">
+                <div class="button-box">
+                    <div id="btn"></div>
+                    <button type="button" class="toggle-btn toggle-btn1">Sign in</button>
+                    <button type="button" class="toggle-btn toggle-btn2">Register</button>
+
+                </div>
+                <div class="social-icon">
+                    <img src="icons/facebook.png" alt="" width="50" height="50">
+                    <img src="icons/instagram.png" alt="" width="50" height="50">
+                    <img src="icons/linkedin.png" alt="" width="50" height="50">
+                </div>
+
+                <div class="form-container">
+                    <form id="sign-in" action="">
+                        <input class="input-field" type="text" placeholder="First Name" required>
+                        <input class="input-field" type="password" placeholder="Last Name" required>
+                        <div class="buttons">
+                            <button class="login-button" type="submit">Submit</button>
+                        </div>
+
+                    </form>
+                    <form id="sign-up" action="" class="hide">
+                        <input class="input-field" type="text" placeholder="First Name" required>
+                        <input class="input-field" type="text" placeholder="Last Name" required>
+                        <input class="input-field" type="text" placeholder="Username" required>
+                        <input class="input-field" type="email" placeholder="Email" required>
+                        <input class="input-field" type="text" placeholder="Password" required>
+                        <div class="buttons">
+                            <button type="submit">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="footer">footer</div>
+    </div>
+    <script src="../wwwroot/js/register.js"></script>
+</body>
+
+</html>
