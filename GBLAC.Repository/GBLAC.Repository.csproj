@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="APIRepository\" />
     <Folder Include="MVCRepository\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GBLAC.Data\GBLAC.Data.csproj" />
   </ItemGroup>
 
 </Project>
