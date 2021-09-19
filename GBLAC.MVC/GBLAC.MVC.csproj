@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\APIControllers\" />
     <Folder Include="Controllers\MVCRepository\" />
   </ItemGroup>
 

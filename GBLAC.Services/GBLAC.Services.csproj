@@ -8,4 +8,13 @@
     <Folder Include="FluentValidation\Validators\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.12.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.12.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GBLAC.Models\GBLAC.Models.csproj" />
+  </ItemGroup>
+
 </Project>
