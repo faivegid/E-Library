@@ -1,17 +1,14 @@
-using GBLAC.Data;
-using GBLAC.Repository.APIRepository.Implementations;
-using GBLAC.Repository.APIRepository.interfaces;
+using FluentValidation.AspNetCore;
+using GBLAC.Models.AutoMapper;
+using GBLAC.Models.DTOs;
+using GBLAC.Services.FluentValidation.Filters;
+using GBLAC.Services.FluentValidation.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GBLAC.MVC
 {
@@ -27,13 +24,15 @@ namespace GBLAC.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //NOTE: When the  AccountRepository inherits from the IAccountRepository, the error will disappear. I couldnt implement it. do it.
-            //services.AddTransient<IAccountRepository, AccountRepository>();
-            services.AddDbContext<GBlacContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultSettings")));
-            services.AddControllersWithViews();
 
-            // Configure JWT settings
-            services.ConfigureJWT(Configuration);
+
+            services.ConfigureAPIDependency(Configuration); // Configures all API Dependecy injection 
+            
+            services.ConfigureSession();
+            services.AddControllers(o => o.Filters.Add<ValidationFilter>())
+             .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<LoginDTOValidator>());
+
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,15 +51,26 @@ namespace GBLAC.MVC
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSession();
+            app.Use(async (context, next) =>
+            {
+                var token = context.Session.GetString("Token");
+                if (!string.IsNullOrEmpty(token))
+                {
+                    context.Request.Headers.Add("Authorization", "Bearer " + token);
+                }
+                await next();
+            });
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Login}/{id?}");
             });
         }
     }
