@@ -5,8 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="APIRepository\" />
     <Folder Include="MVCRepository\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GBLAC.Data\GBLAC.Data.csproj" />
   </ItemGroup>
 
 </Project>
