@@ -1,6 +1,6 @@
 ﻿namespace GBLAC.Models.DTOs
 {
-    public class RegisterationDTO
+    public class UserRegisteModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }  

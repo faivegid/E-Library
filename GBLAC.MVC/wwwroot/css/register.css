@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
-
+/**/
 :root {
     --primary-color: #ffe600;
     --secondary-color: #263b5e;
 }
 
-* {
+/** {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -16,7 +16,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     height: 100%;
 }
-
+*/
 .grid-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -32,11 +32,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px;
 }
 
 .header-brand {
-    padding: 1.5rem;
+    font-size: 40px;
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -64,9 +63,6 @@ body {
         }
 
 .sign {
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
     border: 2px solid var(--primary-color);
     border-radius: 5px;
 }
@@ -95,7 +91,7 @@ body {
 
 /* Main section starts here ............................................. */
 
-.main {
+main {
     grid-area: main;
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.pexels.com/photos/3457273/pexels-photo-3457273.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
     background-size: cover;
@@ -103,25 +99,21 @@ body {
     background-repeat: no-repeat;
 }
 
-.modal {
-    position: relative;
+.page-view {
     width: 380px;
     height: 480px;
     margin: 1.5% auto;
     background: rgba(255, 255, 255, .8);
-    padding: 5px;
 }
 
 .button-box {
-    position: relative;
     width: 220px;
     margin: 35px auto;
     box-shadow: 0 0 20px 9px #ff61241f;
     border-radius: 30px;
 }
 
-.toggle-btn {
-    padding: 10px 30px;
+.nav-btn {
     cursor: pointer;
     background: transparent;
     border: 0;
@@ -129,13 +121,12 @@ body {
     position: relative;
 }
 
-.toggle-btn1 {
+.sign-up-btn{
     color: white;
 }
 
 #btn {
     top: 0;
-    position: absolute;
     width: 110px;
     height: 100%;
     left: 0;
