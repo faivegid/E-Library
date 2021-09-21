@@ -25,10 +25,12 @@ namespace GBLAC.Services.FluentValidation.Filters
                         errorResponse.Errors.Add(errorModel);
                     }
                 }
-
                 context.Result = new BadRequestObjectResult(errorResponse);
             }
-            await next();
+            else
+            {
+                await next();
+            }            
         }
     }
 }

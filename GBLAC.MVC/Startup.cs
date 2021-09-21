@@ -32,7 +32,7 @@ namespace GBLAC.MVC
             services.AddControllers(o => o.Filters.Add<ValidationFilter>())
              .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<LoginDTOValidator>());
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,7 +70,7 @@ namespace GBLAC.MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Login}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }
