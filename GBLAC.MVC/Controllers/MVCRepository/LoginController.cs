@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GBLAC.Models.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GBLAC.MVC.Controllers.MVCRepository
 {
@@ -11,7 +8,22 @@ namespace GBLAC.MVC.Controllers.MVCRepository
     {
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public IActionResult Login(LoginModel login)
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [Route("register")]
+        public IActionResult Registration(UserRegisteModel register)
         {
             return View();
         }

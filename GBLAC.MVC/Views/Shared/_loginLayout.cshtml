@@ -1,34 +1,48 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+
+<html>
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="~/css/register.css">
-	<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css">
-	<link rel="stylesheet" href="~/lib/font-awesome/css/fontawesome.min.css">
-	<title>Document</title>
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewData["TItle"]</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
+	<link rel="stylesheet" href="~/css/SiginIn.css" />
 </head>
 <body>
-	<div class="grid-container">
-		<div class="header">
-			<div class="header-brand"><h1><a href="#">G-BLAC</a></h1></div>
-			<div class="header-nav">
-				<ul class="nav-list">
-					<li class="nav"><a href="#">HOME</a></li>
-					<li class="nav"><a href="#">EXPLORE</a></li>
-					<li class="nav"><a href="#">CONTACT US</a></li>
-					<li class="nav"><span class="sign"><a href="#">SIGN IN</a></span></li>
-					<li class="search"><i class="fas fa-search"></i></li>
-				</ul>
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-lightnavbar d-flex justify-content-between bg-white border-buttom w-100" >
+			<div class="header-brand">
+				<h1><a asp-area="" asp-controller="Home" asp-action="Index"><span class="primary-color">G</span>-BLac</a></h1>
 			</div>
-		</div>
-		<div class="main">
-			@RenderBody()
-		</div>
-		<div class="footer">footer</div>
-	</div>
-	<script src="~/js/register.js"></script>
-	@await RenderSectionAsync("Scripts", required: false)
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="d-flex p-0">
+				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between my-auto">
+					<ul class="navbar-nav flex-grow-1">
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">HOME</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">CONTACT US</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="resgistration"></a>
+						</li>
+					</ul>
+				</div>
+				<div class="btn-group my-auto">
+					<button class="btn-large btn-primary-color text-center">Explore</button>
+					<button class="btn-large btn-secondary-color text-center">Sign Up</button>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<main>
+		@RenderBody()
+	</main>
+	<footer>
+	</footer>
 </body>
 </html>
