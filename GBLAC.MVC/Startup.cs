@@ -1,6 +1,4 @@
 using FluentValidation.AspNetCore;
-using GBLAC.Models.AutoMapper;
-using GBLAC.Models.DTOs;
 using GBLAC.Services.FluentValidation.Filters;
 using GBLAC.Services.FluentValidation.Validators;
 using Microsoft.AspNetCore.Builder;
@@ -24,8 +22,6 @@ namespace GBLAC.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-
             services.ConfigureAPIDependency(Configuration); // Configures all API Dependecy injection 
             
             services.ConfigureSession();
@@ -70,7 +66,7 @@ namespace GBLAC.MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Index}/{id?}");
+                    pattern: "{controller=Book}/{action=Index}/{id?}");
             });
         }
     }

@@ -23,47 +23,36 @@ namespace GBLAC.Repository.APIRepository.Implementations
         }
 
         public async Task<bool> DeleteAsync(T entity)
-        {            
+        {
             _dbSet.Remove(entity);
             return await _context.SaveChangesAsync() > 0;
         }
-   
+
         public async Task<IList<T>> GetAllAsync(Expression<Func<T, bool>> expression = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderby = null, List<string> Includes = null)
         {
             var query = _dbSet.AsNoTracking();
+            if (Includes != null) Includes.ForEach(x => query.Include(x));
+            if (expression != null) query = query.Where(expression);
+            if (orderby != null) query = orderby(query);
 
-            if(expression != null)
-                query = query.Where(expression);
-            if(Includes != null)
-            {
-                foreach (var property in Includes)
-                {
-                    query.Include(property);
-                }
-            }
-            if(orderby != null)
-                query = orderby(query);
             return await query.ToListAsync();
         }
 
         public async Task<T> GetAsync(Expression<Func<T, bool>> expression, List<string> Includes = null)
         {
             var query = _dbSet;
-
-            if(Includes != null)
-            {
-                foreach (var property in Includes)
-                {
-                    query.Include(property);
-                }
-            }
+            if (Includes != null) Includes.ForEach(x => query.Include(x));
             return await _dbSet.AsNoTracking().Where(expression).FirstOrDefaultAsync(expression);
         }
 
-        public async Task<IPagedList<T>> GetPageList(PagingDTO pager, Expression<Func<T, bool>> expression = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderby = null, List<string> Includes = null)
+        public async Task<IPagedList<T>> GetPageList(
+            PagingDTO pager,
+            Expression<Func<T, bool>> expression = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderby = null,
+            List<string> Includes = null)
         {
             IList<T> listQuery = await GetAllAsync(expression, orderby, Includes);
-            var pageList = await  listQuery.ToPagedListAsync(pager.PageNumber, pager.PageSize);
+            var pageList = await listQuery.ToPagedListAsync(pager.PageNumber, pager.PageSize);
             return pageList;
         }
 
@@ -71,7 +60,7 @@ namespace GBLAC.Repository.APIRepository.Implementations
         {
             await _dbSet.AddAsync(entity);
             return await _context.SaveChangesAsync() > 0;
-        } 
+        }
 
         public async Task<bool> UpdateAsync(T entity)
         {

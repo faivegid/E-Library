@@ -1,4 +1,5 @@
 ﻿using GBLAC.Models.DTOs;
+using GBLAC.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GBLAC.MVC.Controllers.MVCRepository

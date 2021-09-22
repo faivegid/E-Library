@@ -1,71 +1,222 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+:root {
+    --primary-color: #fae801; /*#ffe600;*/
+    --secondary-color: #263b5e;
+    --offset-color: #bec4cf;
+    --star-color: #FFA500;
 }
+
+* {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--secondary-color);
+}
+
+.hide-element {
+    display: none;
+}
+
+.primary-color {
+    color: var(--primary-color);
+}
+
+.secondary-color {
+    color: var(--secondary-color);
+}
+
+.bg-primary-color {
+    background: var(--primary-color);
+}
+
+.bg-star-color {
+    background: var(--star-color);
+}
+
+.star-color {
+    color: var(--star-color);
+}
+
+.bg-secondary-color {
+    background: var(--secondary-color);
+}
+
+.bg-offset-color {
+    background: var(--offset-color);
+}
+
+.border-primary-color {
+    border: 0.5px solid var(--primary-color);
+}
+
+.border-secondary-color {
+    border: 0.5px solid var(--secondary-color);
+}
+
+.btn-large {
+    font-size: 1.2em;
+    padding: 0.8em;
+    border: none;
+    margin: 0.25em;
+}
+
+.btn-medium {
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.6em;
+    border: none;
+    margin: 0;
+    text-align: center;
+}
+
+.btn-primary-color, btn-primary-color i {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+    .btn-primary-color:hover, btn-primary-color>i:hover {
+        background: var(--secondary-color);
+        color: var(--primary-color);
+    }
+
+.btn-secondary-color, btn-secondary-color > i {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+    .btn-secondary-color:hover, btn-secondary-color:hover {
+        background: var(--primary-color);
+        color: var(--secondary-color);
+    }
+
+/* Header Section*/
+.header-brand {
+    font-size: 40px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+    .header-brand h1 a {
+        text-decoration: none;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: var(--secondary-color);
+    }
+
+body {
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    color: var(--secondary-color);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2.5em;
+    width: 100%;
+    height: 10vh;
+    border-bottom: 0.5px solid var(--primary-color);
+}
+
+main {
+    width: 95%;
+}
+
+.border-ra {
+    border-radius: 1em;
+}
+
+.search input {
+    width: 400px;
+    padding: 0.5em;
+    border: none;
+    font-size: 16px;
+    color: var(--secondary-color);
+}
+
+.search button {
+    border: 1px solid transparent;
+    background: none;
+}
+
+nav ul > li > a {
+    font-size: 20px;
+    font-weight: normal;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--secondary-color);
+}
+
+a:after {
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+
 
 /* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
+
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
     font-size: 16px;
-  }
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
 }
