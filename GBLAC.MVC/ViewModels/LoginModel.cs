@@ -1,4 +1,4 @@
-﻿namespace GBLAC.Models.DTOs
+﻿namespace GBLAC.Models.ViewModels
 {
     public class LoginModel
     {
