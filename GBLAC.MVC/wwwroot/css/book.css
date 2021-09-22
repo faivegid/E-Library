@@ -1,0 +1,28 @@
+﻿
+:root {
+    --primary-color: #fae801; /*#ffe600;*/
+    --secondary-color: #263b5e;
+    --offset-color: #bec4cf;
+}
+.section{
+    border-bottom: 0.5px solid var(--primary-color);
+}
+.section-title{
+    font-weight: normal;
+    font-size: 25px;
+}
+.section-description{
+    font-size: 18px;
+    font-style: oblique;
+}
+.descrition-title{
+    margin-top: 1em;
+    font-weight: bold;
+}
+.description {
+    margin: 0;
+    font-size: 18px;
+}
+.btn-medium{
+
+}
