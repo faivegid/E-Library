@@ -3,7 +3,7 @@
 Team Members -
 * Gideon Faive - Team Lead
 * Praise Balogun
-* Chibuke Lawrence
+* Chibuike Lawrence
 * Chukwuebuka Enyelu
 
 This is an ASP.NET application with both API and a MVC that consumes the API.
