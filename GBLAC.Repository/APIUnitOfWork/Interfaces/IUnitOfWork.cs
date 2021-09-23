@@ -1,4 +1,5 @@
 ﻿using GBLAC.Models;
+using GBLAC.Models.Enums;
 using GBLAC.Repository.APIRepository;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,7 @@ namespace GBLAC.Repository.APIUnitOfWork.Interfaces
     {
         IGenericRepository<Book> Books { get; }
         IGenericRepository<Category> Categories {  get; }
+        IGenericRepository<BookType> BookTypes {  get; }
+
     }
 }
