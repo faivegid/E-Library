@@ -1,4 +1,5 @@
-﻿using GBLAC.Data;
+﻿using FluentValidation;
+using GBLAC.Data;
 using GBLAC.Models;
 using GBLAC.Models.AutoMapper;
 using GBLAC.Models.DTOs;
@@ -6,9 +7,12 @@ using GBLAC.Repository.APIUnitOfWork.Implementaiton;
 using GBLAC.Repository.APIUnitOfWork.Interfaces;
 using GBLAC.Services.APIServices.Implementations;
 using GBLAC.Services.APIServices.Interfaces;
+using GBLAC.Services.FluentValidation.Validators;
+using GBLAC.Services.GlobalErrorHandler;
 using GBLAC.Services.TokenGeneration.Implementation;
 using GBLAC.Services.TokenGeneration.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,15 +30,18 @@ namespace GBLAC.MVC
             services.ConfigureAPIDatabase(configuration); //Configure DBContext
 
             services.ConfigureAPIIdentity(); //COnfigure Identity
-            services.ConfigureAPICloudinary(configuration); //Configure Cloudinary
-            services.AddAutoMapper(typeof(MappingSetup));
+            services.Configure<ImageSettingDTO>(configuration.GetSection("Cloudingary"));
 
+            services.AddAutoMapper(typeof(MappingSetup));
 
             services.ConfigureAPIInterfaces(); //All Dependency injection of Interfaces created
 
+            services.AddTransient<IValidator<LoginDTO>, LoginDTOValidator>();
+            services.AddTransient<IValidator<RegisterationDTO>, RegistrationDTOValidator>();
             services.ConfigureAPIJWTAuthentication(configuration); // Configure JWT settings
 
         }
+
         public static void ConfigureAPIInterfaces(this IServiceCollection services)
         {
             services.AddTransient<IUnitOfWork, UnitOfWork>();
@@ -44,13 +51,11 @@ namespace GBLAC.MVC
         }
         public static void ConfigureAPIDatabase(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<GBlacContext>(options => options.UseSqlite(configuration.GetConnectionString("DefaultSettings")));
+            services.AddDbContext<GBlacContext>(options =>
+            {
+                options.UseSqlite(configuration.GetConnectionString("DefaultSettings"));
+            });
         }
-        public static void ConfigureAPICloudinary(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.Configure<ImageSettingDTO>(configuration.GetSection("Cloudingary"));
-        }
-
         public static void ConfigureAPIIdentity(this IServiceCollection services)
         {
             services
@@ -62,8 +67,7 @@ namespace GBLAC.MVC
                 options.User.RequireUniqueEmail = true;
                 options.Password.RequiredLength = 9;
             });
-        }
-
+        } 
         public static void ConfigureSession(this IServiceCollection services)
         {
             services.AddMvc().AddSessionStateTempDataProvider();
@@ -98,6 +102,11 @@ namespace GBLAC.MVC
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
                 };
             });
+        }
+
+        public static void ConfigureGlobalErrorHandler(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<GlobalHandlerMiddleware>();
         }
     }
 }

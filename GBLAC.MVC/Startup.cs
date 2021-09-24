@@ -23,11 +23,11 @@ namespace GBLAC.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureAPIDependency(Configuration); // Configures all API Dependecy injection 
-            
-            services.ConfigureSession();
-            services.AddControllers(o => o.Filters.Add<ValidationFilter>())
-             .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<LoginDTOValidator>());
+            services.ConfigureMVCDependency(Configuration);
 
+            services.ConfigureSession();
+            //services.AddControllers(o => o.Filters.Add<ValidationFilter>())
+            // .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<LoginDTOValidator>());
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
@@ -57,7 +57,9 @@ namespace GBLAC.MVC
                 }
                 await next();
             });
+
             app.UseRouting();
+            app.ConfigureGlobalErrorHandler();
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -66,7 +68,7 @@ namespace GBLAC.MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Book}/{action=Index}/{id?}");
+                    pattern: "{controller=login}/{action=Index}/{id?}");
             });
         }
     }

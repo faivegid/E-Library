@@ -15,17 +15,21 @@
     font-size: 18px;
     font-style: oblique;
 }
-.descrition-title{
-    margin-top: 1em;
-    font-weight: bold;
-}
-.description {
-    margin: 0;
+
+.book-title {
+    font-weight: normal;
     font-size: 18px;
 }
-.btn-medium{
-
+.book-aurthor {
+    margin: 0 1px;
+    font-size: 14px;
+    font-style: oblique;
 }
+
+.book-rating{
+    font-size: 12px;
+}
+
 a:hover {
     text-decoration-line: none;
     opacity: 0.6;
