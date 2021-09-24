@@ -4,8 +4,10 @@ using GBLAC.Models.DTOs;
 using GBLAC.Repository.APIUnitOfWork.Interfaces;
 using GBLAC.Services.APIServices.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using X.PagedList;
 
@@ -82,5 +84,53 @@ namespace GBLAC.Services.APIServices.Implementations
             }
             throw new BadHttpRequestException("Book was not updated", StatusCodes.Status400BadRequest);
         }
+
+        public async Task<bool> UplodeBookFile(Book book, IFormFile bookFile)
+        {
+            var result = await _unitOfWork.Books.GetAsync(b => b.BookName == book.BookName, null);
+            if (result != null)
+            {
+                using (var target = new MemoryStream())
+                {
+                    bookFile.CopyTo(target);
+                    result.BookFileObject.BookFile = target.ToArray();
+                }
+            }
+            else
+            {
+                throw new BadHttpRequestException("Book does not exist", StatusCodes.Status400BadRequest);
+            }
+
+            var result2 = await _unitOfWork.Books.UpdateAsync(result);
+            if (result2)
+            {
+                return result2;
+            }
+            throw new BadHttpRequestException("Book was not updated", StatusCodes.Status400BadRequest);
+        }
+
+        public async Task<FileContentResult> GetBookFile(Book book )
+        {
+            var bookObject = await _unitOfWork.Books.GetAsync(b => b.BookName == book.BookName, null);
+            if (bookObject != null)
+            {
+                if (bookObject.BookFileObject.BookFile == null)
+                {
+                    throw new BadHttpRequestException("Book does not contain a file", StatusCodes.Status400BadRequest);
+                }
+                else
+                {
+                    byte[] BookFile = bookObject.BookFileObject.BookFile;
+                    string mimeType = "application/pdf";
+                    return new FileContentResult(BookFile, mimeType);
+                    
+                }
+            }
+            else
+            {
+                throw new BadHttpRequestException("Book does not exist", StatusCodes.Status400BadRequest);
+            }
+        }
+
     }
 }
