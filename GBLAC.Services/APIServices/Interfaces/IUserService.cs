@@ -13,10 +13,10 @@ namespace GBLAC.Services.APIServices.Interfaces
     public interface IUserService
     {
         Task<UserDTO> LoginUserAsync(LoginDTO login);
-        Task<UserDTO> RegisterUserAsync(RegisterationDTO request);
-        Task<IdentityResult> AddUserAsync(AppUser user, string password);
+        Task<bool> RegisterUserAsync(RegisterationDTO request);
+        Task<bool> AddUserAsync(AppUser user, string password);
         Task<IdentityResult> DeleteUserAsync(AppUser user);
-        IList<AppUser> GetAllUserAsync(Expression<Func<AppUser, bool>> expression = null);
+        IList<AppUser> GetUserAsync(Expression<Func<AppUser, bool>> expression = null);
         Task<IdentityResult> UpdateUserAsync(AppUser user);
         Task<IdentityResult> UpdateUserPasswordAsync(AppUser user, string oldPassword, string newPassword);
         Task<ImageUploadResult> UploadIProfileImageAsync(IFormFile image);

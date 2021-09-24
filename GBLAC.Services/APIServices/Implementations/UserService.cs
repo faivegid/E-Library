@@ -6,7 +6,6 @@ using GBLAC.Services.APIServices.Interfaces;
 using GBLAC.Services.TokenGeneration.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -39,37 +38,37 @@ namespace GBLAC.Services.APIServices.Implementations
             _tokenGenerator = tokenGenerator;
         }
 
+        #region User Login
         public async Task<UserDTO> LoginUserAsync(LoginDTO login)
         {
-            _logger.LogInformation($"Login request by {login.Email}");
+            var user = await ValidateUserRequestAsync(login);
+            return await GetUserDTOWithToken(user);
+        }
+
+        private async Task<UserDTO> GetUserDTOWithToken(AppUser user)
+        {
+            var userDTO = _mapper.Map<UserDTO>(user);
+            userDTO.Token = await _tokenGenerator.CreateTokenAsync(user);
+            return userDTO;
+        }
+        private async Task<AppUser> ValidateUserRequestAsync(LoginDTO login)
+        {
             var user = await _userManager.FindByEmailAsync(login.Email);
             if (user != null)
             {
                 var result = await _userManager.CheckPasswordAsync(user, login.Password);
-                if (result)
-                {
-                    var userDTO = _mapper.Map<UserDTO>(user);
-                    userDTO.Token = await _tokenGenerator.CreateTokenAsync(user);
-                    _logger.LogInformation($"Successful login by {login.Email}");
-                    return userDTO;
-                }
+                if (result) return user;
             }
-
             throw new BadHttpRequestException("Invalid Login Credentials", StatusCodes.Status400BadRequest);
         }
-        public async Task<UserDTO> RegisterUserAsync(RegisterationDTO request)
+        #endregion
+        #region User Registration
+        public async Task<bool> RegisterUserAsync(RegisterationDTO request)
         {
             _logger.LogInformation($"Registration request by {request.Email}");
-            var user = _mapper.Map<AppUser>(request);
-            var result = await AddUserAsync(user, request.Password);            
-            if (result.Succeeded)
-            {
-                _logger.LogInformation($"Registration Sucessfull by {request.Email}");
-                return _mapper.Map<UserDTO>(user);
-            }
-            throw new BadHttpRequestException("Error Occurrred Creating User", StatusCodes.Status400BadRequest);
+            return await AddUserAsync(_mapper.Map<AppUser>(request), request.Password);
         }
-        public async Task<IdentityResult> AddUserAsync(AppUser user, string password)
+        public async Task<bool> AddUserAsync(AppUser user, string password)
         {
             var createResult = await _userManager.CreateAsync(user, password);
             if (createResult.Succeeded)
@@ -78,21 +77,28 @@ namespace GBLAC.Services.APIServices.Implementations
                 if (roleResult.Succeeded)
                 {
                     _logger.LogInformation($"Success added {user.Email} with Customer role to database");
-                    return roleResult;
+                    return true;
                 }
                 await _userManager.DeleteAsync(user);
-                return roleResult;
+                throw new BadHttpRequestException("Internal Server Error", StatusCodes.Status500InternalServerError);
             }
-            return createResult;
+            string errors = GetErrorFromIdentiy(createResult);
+            throw new BadHttpRequestException(errors, StatusCodes.Status500InternalServerError);
         }
-        public IList<AppUser> GetAllUserAsync(Expression<Func<AppUser, bool>> expression = null)
+
+        private static string GetErrorFromIdentiy(IdentityResult createResult)
         {
-            var users = _userManager.Users.AsQueryable();
-            if (expression != null)
-            {
-                users = users.Where(expression);
-            }
-            return users.ToList();
+            string errors = "";
+            createResult.Errors.ToList()
+                .ForEach(e => errors += e.Description);
+            return errors;
+        }
+        #endregion
+
+        public IList<AppUser> GetUserAsync(Expression<Func<AppUser, bool>> expression = null)
+        {
+            return expression == null ? _userManager.Users.ToList()
+                                      : _userManager.Users.Where(expression).ToList();
         }
         public async Task<IdentityResult> UpdateUserPasswordAsync(
             AppUser user, string oldPassword, string newPassword) =>

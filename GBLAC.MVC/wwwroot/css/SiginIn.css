@@ -1,20 +1,36 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
 
-
-main {
-    display: flex;
-    width: 100%;
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.pexels.com/photos/3457273/pexels-photo-3457273.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
-    background-size: contain;
-    background-position: right;
-    background-repeat: no-repeat;
-    justify-content: center;
-    align-items: center;
-    height: 85vh
+:root {
+    --input-color: #929cae;
 }
 
+main {
+    width: 100%;
+    padding: 1em;
+    align-items: center;
+    background-image: url("/img/sign-in.jpg");
+    background-size: auto;
+    background-position: right;
+    background-repeat: no-repeat;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
 
+/*@media screen and  (max-width:600px){
+    main{
+        background-image: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }*/
+  /*  .form-div{
+        width:100%;
+        margin: 0 auto;
+    }*/
+/*}*/
 
 .btn-group {
     display: flex;
@@ -23,12 +39,7 @@ main {
     padding: 0;
 }
 
-
-.form-label-group {
-    border-radius: 2em;
-}
-
-.form-signin, .form-signup {
+.form-div{
     width: 450px;
     padding: 1.5em;
 }
@@ -44,6 +55,7 @@ main {
         padding: .75rem;
     }
 
+    
     .form-label-group label {
         position: absolute;
         top: 0;
@@ -59,6 +71,7 @@ main {
 
     .form-label-group input::-webkit-input-placeholder {
         color: transparent;
+
     }
 
     .form-label-group input::-moz-placeholder {
@@ -122,7 +135,7 @@ main {
 /*
  Fallback for Edge
 --------------------------------------------------*/
-@supports (-ms-ime-align: auto) {
+/*@supports (-ms-ime-align: auto) {
     .form-label-group {
         display: -ms-flexbox;
         display: flex;
@@ -138,3 +151,4 @@ main {
             color: #777;
         }
 }
+*/
