@@ -69,6 +69,7 @@ for details on configuring this project to bundle and minify static web assets. 
     border: none;
     margin: 0;
     text-align: center;
+    border-radius: 1em;
 }
 
 .btn-primary-color, btn-primary-color i {
@@ -108,7 +109,7 @@ body {
     padding: 0;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
+    font-family: 'Quicksand', sans-serif;
     color: var(--secondary-color);
 }
 
@@ -118,14 +119,15 @@ header {
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 2.5em;
+    padding: 0.2em;
     width: 100%;
-    height: 10vh;
     border-bottom: 0.5px solid var(--primary-color);
 }
 
 main {
     width: 95%;
+    display: flex;
+    flex-flow: column;
 }
 
 .border-ra {
@@ -159,18 +161,6 @@ a:after {
 a:hover {
     color: var(--primary-color);
 }
-
-
-
-/* Provide sufficient contrast against white background */
-
-
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
-
 
 /* Sticky footer styles
 -------------------------------------------------- */

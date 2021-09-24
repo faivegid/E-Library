@@ -12,11 +12,8 @@ namespace GBLAC.Services.FluentValidation.Validators
     {
         public LoginDTOValidator()
         {
-            RuleFor(login => login.Email)
-                .NotEmpty().WithMessage("Can't Login Without an email")
-                .EmailAddress().WithMessage("Invalid Email format");
-            RuleFor(login => login.Password)
-                .NotEmpty().WithMessage("Can't login without a password");
+            RuleFor(login => login.Email).NotEmpty().EmailAddress().WithMessage("Invalid Email format");
+            RuleFor(login => login.Password).NotEmpty().WithMessage("Can't login without a password");
         }
     }
 }

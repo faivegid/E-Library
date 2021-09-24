@@ -1,14 +1,13 @@
 ﻿@using GBLAC.Models.ViewModels
-@using GBLAC.Models.ViewModels
 @{
 	Layout = "_LoginLayout";
 	ViewData["Title"] = "Sign In";
 	LoginModel login = new LoginModel();
 	UserRegisteModel register = new UserRegisteModel();
 }
-
-<div class="form-signin bg-white p-4 hide-element" style="border-radius: 1.5em;">
-	<form id="sign-in-form" method="post" asp-controller="Login" asp-action="login">
+@**@
+<div class="form-div bg-white p-4 m-4 shadow hide-element" style="border-radius: 1.5em;">
+	<form id="sign-in-form" method="post" asp-controller="login" asp-action="login">
 		<div class="text-center mb-4">
 			<h2 class="h3 mb-3 font-weight-normal">Sign In</h2>
 			<p>Welcome to G-BLac Library</p>
@@ -36,18 +35,20 @@
 	</form>
 </div>
 
-<div class="form-signin bg-white p-4" style="border-radius: 1.5em;">
-	<form id="sign-up-form" method="post" asp-controller="Login" asp-action="Registration">
+<div class="form-div bg-white p-4 ml-4 shadow " style="border-radius: 1.5em;">
+	<form id="sign-up-form" method="post" asp-controller="login" asp-action="register">
 		<div class="text-center mb-4">
 			<h2 class="h3 mb-3 font-weight-normal">Sign Up</h2>
 			<p>Please use your CHAS issued credentials to login</p>
 		</div>
 		<hr />
 		<div asp-validation-summary="All" class="text-danger"></div>
+		<div class="row">
+		</div>
 		<div class="form-group form-label-group">
-			<input asp-for=@register.Password type="text" id="inputPassword" class="form-control" placeholder="First Name" required>
-			<label asp-for="@register.Password for=" inputPassword">Password</label>
-			<span asp-validation-for=@register.Password class="text-danger"></span>
+			<input asp-for=@register.FirstName type="text" id="firstName" class="form-control" placeholder="First Name" required>
+			<label asp-for=@register.FirstName for="firstName">First Name</label>
+			<span asp-validation-for=@register.FirstName class="text-danger"></span>
 		</div>
 		<div class="form-group form-label-group">
 			<input asp-for=@register.LastName type="text" id="lastName" class="form-control" placeholder="Last Name" required>
@@ -64,11 +65,11 @@
 			<label asp-for=@register.Password for="inputPassword">Password</label>
 			<span asp-validation-for=@register.Password class="text-danger"></span>
 		</div>
-		<div class="form-group form-label-group">
+		@*<div class="form-group form-label-group">
 			<input asp-for=@register.ConfirmPassword type="text" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
 			<label asp-for=@register.ConfirmPassword for="confirmPassword">Confirm Password</label>
 			<span asp-validation-for=@register.ConfirmPassword class="text-danger"></span>
-		</div>
+		</div>*@
 		<div class="form-group">
 			<button type="submit" class="btn pb-2 btn-lg btn-block btn-secondary-color" style="border-radius:2em;">Sign Up</button>
 		</div>
