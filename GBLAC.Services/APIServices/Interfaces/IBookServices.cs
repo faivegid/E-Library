@@ -1,9 +1,11 @@
 ﻿using GBLAC.Models;
 using GBLAC.Models.DTOs;
+using GBLAC.Services.APIServices.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System.Collections;
 using System.Threading.Tasks;
 
-namespace GBLAC.Services.APIServices.Interfaces
+namespace GBLAC.Services.APIServices.Implementations
 {
     public interface IBookServices
     {
@@ -13,5 +15,6 @@ namespace GBLAC.Services.APIServices.Interfaces
         Task<IEnumerable> GetAllBooksByType(PagingDTO pager, string bookTypeName);
         Task<Book> GetBookAsync(string bookName);
         Task<bool> UpdateBook(Book book);
+        Task<bool> UplodeBookFile(Book book, IFormFile bookFile);
     }
 }
